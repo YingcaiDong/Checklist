@@ -41,9 +41,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="mRo-AY-Alc" kind="presentation" identifier="EditItem" id="SiM-kh-Ym5"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -334,8 +331,5 @@
             <point key="canvasLocation" x="2623" y="352"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="SiM-kh-Ym5"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.015686274509803921" green="0.66274509803921566" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
 </document>

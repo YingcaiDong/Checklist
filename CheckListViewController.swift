@@ -74,6 +74,21 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
     
+    // link detail info button to the 'listDetailViewController' navigationController
+    // this time is to link a segue to an customed storyboard via code
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        // similar steps as prepare segue
+        let navigationController = storyboard!.instantiateViewController(withIdentifier: "ItemDetailNavigationViewController") as! UINavigationController
+        let controller = navigationController.topViewController as! ItemDetailViewController
+        controller.delegate = self
+        
+        let item = checklist.items[indexPath.row]
+        controller.itemToEdit = item
+        
+        present(navigationController, animated: true, completion: nil)
+    }
+
     
     //==========================
     //      other funciton
@@ -139,7 +154,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             // CheckListViewController 作为 ItemDetailViewController 的 delegate
             controller.delegate = self
             
-        } else if segue.identifier == "EditItem" {
+        } /*else if segue.identifier == "EditItem" {
             
             let navigationController = segue.destination as! UINavigationController
             let controller = navigationController.topViewController as! ItemDetailViewController
@@ -148,7 +163,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 controller.itemToEdit = checklist.items[indexPath.row]
             }
-        }
+        }*/
     }
 }
 
