@@ -64,14 +64,12 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
     // delete one selected item
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
+
         checklist.items.remove(at: indexPath.row)
         
-        let indexPaths = [indexPath]
-        tableView.deleteRows(at: indexPaths, with: .automatic)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     // link detail info button to the 'listDetailViewController' navigationController
@@ -95,7 +93,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
     //==========================
     func configureTextForCell(_ cell: UITableViewCell, withChecklistItem item: checklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel
-        label.text = item.text
+        label.text = "\(item.text): \(item.itemID)"
     }
     
     func configureCheckmarkForCell(_ cell: UITableViewCell, withChecklistItem item: checklistItem) {
