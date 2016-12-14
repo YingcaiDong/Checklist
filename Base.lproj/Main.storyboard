@@ -330,9 +330,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cqv-kX-ias">
+                                                    <rect key="frame" x="306" y="4" width="36" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="4nd-MU-2kM"/>
+                                                        <constraint firstAttribute="width" constant="36" id="BXp-iG-4Pf"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="cqv-kX-ias" secondAttribute="trailing" id="4NI-DH-Grm"/>
                                                 <constraint firstItem="4p9-4B-m6A" firstAttribute="centerY" secondItem="2Ci-eB-fwW" secondAttribute="centerY" id="O5S-am-OTt"/>
+                                                <constraint firstItem="cqv-kX-ias" firstAttribute="centerY" secondItem="2Ci-eB-fwW" secondAttribute="centerY" id="Xwn-p0-SKL"/>
                                                 <constraint firstItem="4p9-4B-m6A" firstAttribute="leading" secondItem="2Ci-eB-fwW" secondAttribute="leadingMargin" id="cQc-F5-hfR"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -364,6 +373,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="doneBarButton" destination="kPO-hE-Are" id="f6Z-2A-jWV"/>
+                        <outlet property="iconImageView" destination="cqv-kX-ias" id="7lK-Uh-M9Z"/>
                         <outlet property="textField" destination="LYi-7m-Ddk" id="rXo-K2-HRr"/>
                     </connections>
                 </tableViewController>
