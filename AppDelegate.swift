@@ -8,8 +8,11 @@
 
 import UIKit
 
+// enable local notification
+import UserNotifications
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     
@@ -25,6 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 将已经生效的 dataModel 赋值给在 AllListViewController 中还未被赋值的 dataModel
         controller.dataModel = dataModel
+        
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.delegate = self
+        } else {
+            // Fallback on earlier versions
+        }
+        
         return true
     }
 
@@ -50,6 +61,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         saveData()
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("Received local notification \(notification)")
     }
 
     func saveData() {

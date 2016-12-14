@@ -21,6 +21,14 @@ class DataModel {
         }
     }
     
+    class func nextChecklistItemID() -> Int {
+        let userDefaults = UserDefaults.standard
+        let itemID = UserDefaults.standard.integer(forKey: "ChecklistItemID")
+        userDefaults.set(itemID + 1, forKey: "ChecklistItemID")
+        userDefaults.synchronize()
+        return itemID
+    }
+    
     //=======================
     // creat a dataFile path
     //=======================
@@ -66,7 +74,9 @@ class DataModel {
     func registerDefalts() {
         // add a init value for 'ChecklistIndex' for UserDefaults
         // prevent first time app open crash
-        let dictionary: [String: Any] = ["ChecklistIndex": -1, "FirstTime": true]
+        let dictionary: [String: Any] = ["ChecklistIndex": -1,
+                                         "FirstTime": true,
+                                         "ChecklistItemID": 0]
         UserDefaults.standard.register(defaults: dictionary)
     }
     
