@@ -36,11 +36,16 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         return checklist.items.count
     }
     
+    func initCellForTableView(_ tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem")
+        return cell!
+    }
+    
     //2. load content to cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // identifer defined in the cell of the storyboard for this controller
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
+        let cell = initCellForTableView(tableView)
         
         let item = checklist.items[indexPath.row]
         
@@ -92,8 +97,27 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
     //      other funciton
     //==========================
     func configureTextForCell(_ cell: UITableViewCell, withChecklistItem item: checklistItem) {
+        
+        let title = cell.viewWithTag(2) as! UILabel
+        let subtitle = cell.viewWithTag(3) as! UILabel
         let label = cell.viewWithTag(1000) as! UILabel
-        label.text = "\(item.text): \(item.itemID)"
+        
+        if item.shouldRemind {
+            
+            let formater = DateFormatter()
+            formater.dateStyle = .medium
+            formater.timeStyle = .short
+            let dateText = formater.string(from: item.dueDate)
+            
+            title.text = "\(item.text)"
+            subtitle.text = "\(dateText)"
+            label.text = ""
+            
+        } else {
+            label.text = "\(item.text)"
+            title.text = ""
+            subtitle.text = ""
+        }
     }
     
     func configureCheckmarkForCell(_ cell: UITableViewCell, withChecklistItem item: checklistItem) {
