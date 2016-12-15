@@ -94,7 +94,7 @@ class DataModel {
         }
     }
     
-    // define how to sort the checklist
+    // define how to sort the checklist by name
     func sortChecklists() {
         lists.sort(by: {checklist1, checklist2 in return checklist1.name.localizedStandardCompare(checklist2.name) == .orderedAscending})
     }

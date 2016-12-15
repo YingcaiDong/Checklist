@@ -57,4 +57,40 @@ class Checklist: NSObject, NSCoding {
         return count
     }
     
+    // define sort checklist item by name
+    func sortItemByName() {
+        items.sort(by: {checklistItem1, checklistItem2 in return checklistItem1.text.localizedStandardCompare(checklistItem2.text) == .orderedAscending})
+    }
+    // define sort checklist item by due date
+    func sortItemByDate() {
+        var itemNoDate = [checklistItem]()
+        var itemWithDate = [checklistItem]()
+        for item in items {
+            if !item.shouldRemind {
+                itemNoDate.append(item)
+            } else {
+                itemWithDate.append(item)
+            }
+        }
+        itemWithDate.sort(by: {checklistItem1, checklistItem2 in return checklistItem1.dueDate.compare(checklistItem2.dueDate) == .orderedAscending})
+        items = itemWithDate + itemNoDate
+        
+    }
+    // define sort checklist item by check mark
+    func sortItemByChcekmark() {
+        var itemChecked = [checklistItem]()
+        var itemUnChecked = [checklistItem]()
+        for item in items {
+            if item.checked {
+                itemChecked.append(item)
+            } else {
+                itemUnChecked.append(item)
+            }
+        }
+        itemChecked.sort(by: {itemChecked1, itemChecked2 in return itemChecked1.text.localizedStandardCompare(itemChecked2.text) == .orderedAscending})
+        itemUnChecked.sort(by: {itemUnChecked1, itemUnChecked2 in return itemUnChecked1.text.localizedStandardCompare(itemUnChecked2.text) == .orderedAscending})
+
+        items = itemChecked + itemUnChecked
+    }
+    
 }

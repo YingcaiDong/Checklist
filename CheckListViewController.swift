@@ -10,6 +10,7 @@ import UIKit
 
 class CheckListViewController: UITableViewController, ItemDetailViewControllerDelegate {
 
+    
     // init an object
     // prepare for the sender from AllListViewController
     var checklist: Checklist!
@@ -91,8 +92,24 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         
         present(navigationController, animated: true, completion: nil)
     }
-
     
+    @IBAction func Sort(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            checklist.sortItemByName()
+            print("0")
+        }
+        if sender.selectedSegmentIndex == 1 {
+            checklist.sortItemByDate()
+            print("1")
+        }
+        if sender.selectedSegmentIndex == 2 {
+            checklist.sortItemByChcekmark()
+            print("2")
+        }
+        tableView.reloadData()
+    }
+    
+
     //==========================
     //      other funciton
     //==========================
@@ -176,16 +193,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             // CheckListViewController 作为 ItemDetailViewController 的 delegate
             controller.delegate = self
             
-        } /*else if segue.identifier == "EditItem" {
-            
-            let navigationController = segue.destination as! UINavigationController
-            let controller = navigationController.topViewController as! ItemDetailViewController
-            controller.delegate = self
-            
-            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
-                controller.itemToEdit = checklist.items[indexPath.row]
-            }
-        }*/
+        }
     }
 }
 
