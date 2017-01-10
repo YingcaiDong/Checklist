@@ -152,16 +152,6 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
         // sortChecklists method decleared in dataModel
         dataModel.sortChecklists()
         
-        /*
-        // update row number
-        let newListIndex = dataModel.lists.count
-        // get new indexPath
-        let indexPath = IndexPath(row: newListIndex, section: 0)
-        // convert indexPath to an array which can be received by other apis
-        let indexPaths = [indexPath]
-        // use api to add this path into the table view
-        tableView.insertRows(at: indexPaths, with: .automatic)
-         */
         // reload all the data, update all property
         tableView.reloadData()
         
@@ -175,14 +165,6 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
         // sort checklists by name order
         dataModel.sortChecklists()
         
-        /*
-        if let index: Int = dataModel.lists.index(of: list) {
-            let indexPath = IndexPath(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) {
-                cell.textLabel!.text = list.name
-            }
-        }
-        */
         tableView.reloadData()
         
         dismiss(animated: true, completion: nil)
